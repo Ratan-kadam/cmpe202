@@ -10,6 +10,9 @@ app.use(connect.query()); // Parse query string into `request.query`
 
 app.use('/', main);
 
+var name;
+var email;
+
 function main(request, response, next) {
 	switch (request.method) {
 		case 'GET': get(request, response); break;
@@ -39,7 +42,9 @@ function get(request, response) {
 function post(request, response) {
 	
 	var Session_ID = login.login(request.body.name, request.body.email);
-        response.setHeader('content-type:','text/html');
+         name = request.body.name;
+         email = request.body.email;
+        response.setHeader('content-type','text/html');
 	response.setHeader('Set-Cookie', 'session_id=' + Session_ID);
 	response.end(login.hello(Session_ID));
 
@@ -60,10 +65,11 @@ function put(request, response) {
 	console.log("PUT:: Re-generate new seesion_id for the same user");
    
 
-	var reNew_sid = login.login(request.body.name, request.body.email);
+//	var reNew_sid = login.login(request.body.name, request.body.email);
+        var reNew_sid = login.login(name,email);
         response.setHeader('content-type:','text/html');
         response.setHeader('Set-Cookie: session_id', reNew_sid);
-	response.end("Re-freshed session id:");
+	response.end("Re-freshed session id");
 	
 };
 
