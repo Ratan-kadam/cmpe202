@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=sr
+comment0.target=State1one(StateRouterone)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ State1\r\n
+comment1.params=world
+comment1.target=int\ throwQuestion(greenfoot.World)
+comment2.params=y
+comment2.target=int\ sampleMethod(int)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=row
+comment4.target=java.lang.String\ readText(int)
+numComments=5
