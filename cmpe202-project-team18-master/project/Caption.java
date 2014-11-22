@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class Caption here.
  * 
@@ -14,6 +14,5 @@ public class Caption extends Actor
      */
     public void act() 
     {
-        // Add your action code here.
-    }    
+     }    
 }

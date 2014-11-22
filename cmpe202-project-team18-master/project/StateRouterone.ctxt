@@ -17,4 +17,6 @@ comment6.params=
 comment6.target=StateInterfaceone\ getState2()
 comment7.params=
 comment7.target=StateInterfaceone\ getState3()
-numComments=8
+comment8.params=mouseX\ mouseY\ caption
+comment8.target=void\ onMousePress(int,\ int,\ Caption)
+numComments=9

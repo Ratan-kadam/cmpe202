@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class GameController here.
@@ -27,24 +28,31 @@ public class GameController extends Actor
         if(Greenfoot.mousePressed(this)) {          
             MouseInfo mouse = Greenfoot.getMouseInfo();  
             mouseX=mouse.getX();  
-            mouseY=mouse.getY();  
+            mouseY=mouse.getY();
+            System.out.println("Clicked1!!!!!!!!");
             if((mouseX >= 760 && mouseX <= 950) && (mouseY >= 500 && mouseY <=555)&&screen.getClass().getName()=="WelcomeScreen")
             {
                 System.out.println("play selected");    
                 setScreen(new GameScreen());
                 showQuestion();
-                    showProfessor();
-                    showPlayer();
-                   showScreen();
-                   level1(); 
-                  
-             
-             
-                   
-               
-             
+                showProfessor();
+                showPlayer();
+                showScreen();
+                level1(); 
             }
-     }
+        }
+        List<Caption> c = getWorld().getObjects(Caption.class);
+            for(Caption caption : c){
+                if(Greenfoot.mousePressed(caption)) { 
+                    MouseInfo mouse = Greenfoot.getMouseInfo();  
+                    mouseX=mouse.getX();  
+                    mouseY=mouse.getY();
+                    st1.onMousePress(mouseX, mouseY, caption); 
+                    State1one.questionCount++;
+                    //Greenfoot.delay(1000);
+                    int gameover = st.throwQuestionRouter();
+                }
+            }
     } 
     
     public void showScreen()
@@ -89,11 +97,9 @@ public class GameController extends Actor
     
     public void level1()
     {
-        
-        
-        System.out.println("level1 ");
         World world = getWorld();
         world.addObject(st,550,100);
+        world.addObject((State1one)st1,550,100);
        // addObject(st,455,0); 
         st.setState( st.getState1());
           

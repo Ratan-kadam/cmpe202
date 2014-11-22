@@ -6,15 +6,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class StateRouterone extends StateInterfaceone
+public class StateRouterone extends Actor implements StateInterfaceone
 {
-  
-    // instance variables - replace the example below with your own
-//
-    
- StateInterfaceone  state1one = new State1one(this);
-StateInterfaceone state2one = new State2one(this);
-StateInterfaceone state3one = new State3one(this);
+    StateInterfaceone state1one = new State1one(this);
+    StateInterfaceone state2one = new State2one(this);
+    StateInterfaceone state3one = new State3one(this);
 
    StateInterfaceone Current;
    
@@ -71,6 +67,10 @@ StateInterfaceone state3one = new State3one(this);
     {
        return state3one;
     }
-  
+    
+    public void onMousePress(int mouseX, int mouseY, Caption caption) 
+    {
+             
+    }
     
 }

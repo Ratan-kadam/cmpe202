@@ -2,9 +2,8 @@
 comment0.params=sr
 comment0.target=State3one(StateRouterone)
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ State3\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
-comment2.params=world
-comment2.target=int\ throwQuestion(greenfoot.World)
+comment1.params=world
+comment1.target=int\ throwQuestion(greenfoot.World)
+comment2.params=mouseX\ mouseY\ caption
+comment2.target=void\ onMousePress(int,\ int,\ Caption)
 numComments=3
