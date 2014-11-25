@@ -37,6 +37,7 @@ public class Dynamic_Text extends Caption
         world.addObject(msg,x1,y1);
       }
       
+<<<<<<< HEAD
     public void writeScore(String txtadd, World world,int x1,int y1, int type){
        Caption  msg= new Caption();
        GreenfootImage gimg;
@@ -57,6 +58,8 @@ public class Dynamic_Text extends Caption
         world.addObject(msg,x1,y1);
       }
       
+=======
+>>>>>>> origin/master
       public void cleanUp(World world){
          System.out.println("World is :" + world);
         List<Caption> c = world.getObjects(Caption.class);

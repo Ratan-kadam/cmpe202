@@ -14,7 +14,10 @@ public class GameController extends Actor
      StateRouterone stateRouter = new StateRouterone();
      //StateInterfaceone state = new State1one(stateRouter);
      StateInterfaceone state = stateRouter.getState1();
+<<<<<<< HEAD
      ScoreBoard scoreboard;
+=======
+>>>>>>> origin/master
     //Project world = null;
     
     public GameController()
@@ -38,7 +41,10 @@ public class GameController extends Actor
                 showQuestion();
                 showProfessor();
                 showPlayer();
+<<<<<<< HEAD
                 showScore();
+=======
+>>>>>>> origin/master
                 showScreen();
                 level1(); 
             }
@@ -114,6 +120,7 @@ public class GameController extends Actor
         //int gameover = stateRouter.throwQuestionRouter();
         int gameover = stateRouter.level1(world);
    }
+<<<<<<< HEAD
    
     public World getGameWorld()
    {
@@ -125,6 +132,8 @@ public class GameController extends Actor
     {
         return scoreboard;
     }
+=======
+>>>>>>> origin/master
     
    
     

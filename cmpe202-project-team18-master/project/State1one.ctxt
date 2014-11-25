@@ -18,6 +18,10 @@ comment7.params=mouseX\ mouseY\ caption\ world
 comment7.target=void\ onMousePress(int,\ int,\ Caption,\ greenfoot.World)
 comment8.params=
 comment8.target=java.util.Map\ readAndparse()
+<<<<<<< HEAD
 comment9.params=
 comment9.target=void\ updatescoreboard()
 numComments=10
+=======
+numComments=9
+>>>>>>> origin/master

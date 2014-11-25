@@ -22,8 +22,11 @@ public class State1one extends Actor implements StateInterfaceone
     StateRouterone sr;
     Map<String, List<String>> questionsMap = new HashMap<String, List<String>>();
     static List<String> formatedQuestion = new ArrayList<String>();
+<<<<<<< HEAD
     GameController gc;
     ScoreBoard scoreboard;
+=======
+>>>>>>> origin/master
     
    
     /**
@@ -93,10 +96,13 @@ public class State1one extends Actor implements StateInterfaceone
            Color clr = java.awt.Color.RED;
            if (optionClicked == answerIndex){
                clr = java.awt.Color.GREEN;
+<<<<<<< HEAD
                
                Project.setScore();
                updatescoreboard();
                
+=======
+>>>>>>> origin/master
            }
            GreenfootImage gimg = caption.getImage();
            gimg.setColor(clr);
@@ -141,6 +147,7 @@ public class State1one extends Actor implements StateInterfaceone
             e.printStackTrace();
         }    
         return questionAnswersMap;  
+<<<<<<< HEAD
 }
 
 public void updatescoreboard()
@@ -151,5 +158,9 @@ public void updatescoreboard()
 }
 
 
+=======
+}
+
+>>>>>>> origin/master
    }
 
