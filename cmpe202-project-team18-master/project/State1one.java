@@ -21,29 +21,44 @@ public class State1one extends Actor implements StateInterfaceone
     public static Integer questionCount = 1;
     StateRouterone sr;
     Map<String, List<String>> questionsMap = new HashMap<String, List<String>>();
-    List<String> formatedQuestion = new ArrayList<String>();
+    static List<String> formatedQuestion = new ArrayList<String>();
     
    
     /**
      * Constructor for objects of class State1
      */
-    public State1one( StateRouterone sr)
-    {
-    System.out.println("in state 1 ");
-     this.sr = sr;
-      GreenfootImage Image= getImage();
-            Image.scale( 40,40 );
-            setImage(Image);
-    
+    public State1one( StateRouterone sr){
+        this.sr = sr;
+        GreenfootImage Image= getImage();
+        Image.scale( 40,40 );
+        setImage(Image);        
     }
-
     
+    public int level1(World world){
+        return throwQuestion(world);
+    }
+    
+    public int level2(World world){
+        return -1;
+    }
+    
+    public int level3(World world){
+        return -1;
+    }
+    
+   public List<String> getFormatedQuestion(){
+       return this.formatedQuestion;
+   } 
+
+   public void setFormatedQuestion(List<String> list){
+       this.formatedQuestion = list;
+   }
+   
    public int throwQuestion(World world){
        String question,answer,option1,option2,option3, option4;
-     questionsMap = readAndparse();
-     if(questionCount <= questionsMap.keySet().size()){
-           formatedQuestion = questionsMap.get("Q".concat(questionCount.toString()));
-     //questionsMap.remove("");
+       questionsMap = readAndparse();
+       if(questionCount <= questionsMap.keySet().size()){
+        setFormatedQuestion(questionsMap.get("Q".concat(questionCount.toString())));
         int length = formatedQuestion.size();
         answerIndex = Integer.parseInt(formatedQuestion.get(length-1));
         question = formatedQuestion.get(0);
@@ -52,48 +67,42 @@ public class State1one extends Actor implements StateInterfaceone
         option3 = formatedQuestion.get(3);
         option4 = formatedQuestion.get(4);
         answer = formatedQuestion.get(answerIndex);
-        Dynamic_Text ob2=Project.getDynamic_Text();
+        Dynamic_Text ob2 = Project.getDynamic_Text();
         ob2.write_text(question,world,500,450,0);
         ob2.write_text(option1,world,335,508,1);
         ob2.write_text(option2,world,670,508,1);
         ob2.write_text(option3,world,335,560,1);
         ob2.write_text(option4,world,670,560,1);
+        questionCount++;
+        return 0;
     }
-    return 0;
-     
+    else{
+        questionCount = 1;
+        sr.setState(sr.getState2());
+        return -1;
     }
+         
+   }
     
        
-     public void onMousePress(int mouseX, int mouseY, Caption caption) 
-    {
-       // int mouseX, mouseY ;
-        ///System.out.println(this.getClass().getName());
-        /*List<Caption> c = getWorld().getObjects(Caption.class);
-        for(Caption caption : c)
-        {
-            if(Greenfoot.mousePressed(caption)) {  */        
-            System.out.println("hellooo");
-            //MouseInfo mouse = Greenfoot.getMouseInfo();  
-            //mouseX=mouse.getX();  
-           // mouseY=mouse.getY();
-            int optionClicked = Options.checkOption(mouseX, mouseY);
-            System.out.println( optionClicked + " and: " + answerIndex);
-            Color clr = java.awt.Color.RED;
-            if (optionClicked == answerIndex){
-                clr = java.awt.Color.GREEN;
-             }
-             GreenfootImage gimg = caption.getImage();
-                gimg.setTransparency(80);
-                gimg.setColor(clr);
-                gimg.fill();
-                caption.setImage(gimg);
-                getWorld().addObject(caption,caption.getX(),caption.getY());
-                Greenfoot.delay(1000);
-            
-       // }
-       // }
-        
-    } 
+    public void onMousePress(int mouseX, int mouseY, Caption caption, World world){
+       int optionClicked = Options.checkOption(mouseX, mouseY);
+       if(optionClicked != -1){
+           Color clr = java.awt.Color.RED;
+           if (optionClicked == answerIndex){
+               clr = java.awt.Color.GREEN;
+           }
+           GreenfootImage gimg = caption.getImage();
+           gimg.setColor(clr);
+           gimg.setTransparency(255);
+           gimg.fill();
+           gimg.setColor(java.awt.Color.WHITE);
+           gimg.drawString(getFormatedQuestion().get(++optionClicked), 20, 10);
+           caption.setImage(gimg);           
+        }
+        Greenfoot.delay(500);
+       Project.getDynamic_Text().cleanUp(world);
+      } 
     
        
     public Map<String, List<String>> readAndparse(){
@@ -102,21 +111,20 @@ public class State1one extends Actor implements StateInterfaceone
       String token2 = "/";
       Map<String, List<String>> questionAnswersMap = new HashMap<String, List<String>>();
          try {  
-            String input;
-            BufferedReader file = new BufferedReader(new FileReader("./questionset/DifficultSet.txt")); 
+            String input = "";
+            BufferedReader file = new BufferedReader(new FileReader("./questionSet/Easy.txt")); 
             while ((input = file.readLine()) != null) {  
+                System.out.println(input);
                 List<String> questionAnswersList = new ArrayList<String>();
                 String[] tempQnA = input.split(token1);
+                System.out.println(tempQnA[0].toString());
                 questionAnswersList.add(tempQnA[0]);
                 StringTokenizer tokenize = new StringTokenizer(tempQnA[1], token2);
                 while(tokenize.hasMoreElements()){
                     questionAnswersList.add(tokenize.nextElement().toString());
                 }
                 String makeQ = "Q".concat((++i).toString());
-                System.out.println(makeQ);
-//                System.out.println
                 questionAnswersMap.put(makeQ,questionAnswersList);
-                //ob2.write_text(input,world,470,355);
             }  
         }  
 
@@ -128,5 +136,6 @@ public class State1one extends Actor implements StateInterfaceone
         }    
         return questionAnswersMap;  
 }
-}
+
+   }
 

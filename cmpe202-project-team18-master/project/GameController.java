@@ -9,9 +9,11 @@ import java.util.*;
  */
 public class GameController extends Actor
 {
+    private int gameover;
     private IScreen screen = null;
-     StateRouterone st = new StateRouterone();
-     StateInterfaceone st1 = new State1one(st);
+     StateRouterone stateRouter = new StateRouterone();
+     //StateInterfaceone state = new State1one(stateRouter);
+     StateInterfaceone state = stateRouter.getState1();
     //Project world = null;
     
     public GameController()
@@ -22,14 +24,12 @@ public class GameController extends Actor
        
     }
     
-    public void act() 
-    {
-        int mouseX, mouseY ;
+    public void act(){
+        int mouseX, mouseY, gameover ;
         if(Greenfoot.mousePressed(this)) {          
             MouseInfo mouse = Greenfoot.getMouseInfo();  
             mouseX=mouse.getX();  
             mouseY=mouse.getY();
-            System.out.println("Clicked1!!!!!!!!");
             if((mouseX >= 760 && mouseX <= 950) && (mouseY >= 500 && mouseY <=555)&&screen.getClass().getName()=="WelcomeScreen")
             {
                 System.out.println("play selected");    
@@ -47,10 +47,10 @@ public class GameController extends Actor
                     MouseInfo mouse = Greenfoot.getMouseInfo();  
                     mouseX=mouse.getX();  
                     mouseY=mouse.getY();
-                    st1.onMousePress(mouseX, mouseY, caption); 
-                    State1one.questionCount++;
-                    //Greenfoot.delay(1000);
-                    int gameover = st.throwQuestionRouter();
+                    stateRouter.onMousePress(mouseX, mouseY, caption, getWorld()); 
+                    gameover = stateRouter.level1(getWorld());
+                    gameover = stateRouter.level2(getWorld());
+                    gameover = stateRouter.level3(getWorld());
                 }
             }
     } 
@@ -95,23 +95,13 @@ public class GameController extends Actor
         screen = sc;
     }
     
-    public void level1()
-    {
+    public void level1(){
         World world = getWorld();
-        world.addObject(st,550,100);
-        world.addObject((State1one)st1,550,100);
-       // addObject(st,455,0); 
-        st.setState( st.getState1());
-          
-        // addObject(st1,455,0);
-    
-     for ( int i=0 ; i < 3 ; i++)
-    {
-       int gameover = st.throwQuestionRouter();
-       
-        if (gameover == 1)
-           i = 3;
-    }
-    }
+        world.addObject(stateRouter,550,100);
+        world.addObject((State1one)state,550,100);
+        stateRouter.setState(stateRouter.getState1());
+        //int gameover = stateRouter.throwQuestionRouter();
+        int gameover = stateRouter.level1(world);
+   }
     
 }

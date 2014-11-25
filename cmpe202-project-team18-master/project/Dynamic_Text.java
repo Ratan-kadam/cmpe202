@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 import java.awt.*;
 
 /**
@@ -17,18 +18,18 @@ public class Dynamic_Text extends Caption
          
      }
      
-     public void write_text(String txtadd, World world,int x1,int y1, int type)
-      {
-          World world1 = getWorld();
+     public void write_text(String txtadd, World world,int x1,int y1, int type){
        Caption  msg= new Caption();
        GreenfootImage gimg;
        gimg = new GreenfootImage(220,22);
        if(type == 0){
            gimg = new GreenfootImage(600,40);
         }
-        gimg.setColor(java.awt.Color.BLACK);
-        gimg.fill();
+        //gimg.setColor(java.awt.Color.BLACK);
+        gimg.setTransparency(255);
+        //gimg.fill();
         gimg.setColor(java.awt.Color.WHITE);
+        //gimg.setTransparency(255);
         Font myFont = new Font("SANS_SERIF", Font.BOLD, 14);
         gimg.setFont(myFont);
         gimg.drawString(txtadd,20, 10);
@@ -36,8 +37,16 @@ public class Dynamic_Text extends Caption
         world.addObject(msg,x1,y1);
       }
       
-      
-      
+      public void cleanUp(World world){
+         System.out.println("World is :" + world);
+        List<Caption> c = world.getObjects(Caption.class);
+        int i = 0;
+        if (null != c && c.size() > 0){
+                for(Caption caption : c){
+                 world.removeObject(caption);
+                 System.out.println("Captions remved: " + ++i);
+            }
+        }
         
-     
-}
+      }
+    }

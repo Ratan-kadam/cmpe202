@@ -6,22 +6,38 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class StateRouterone extends Actor implements StateInterfaceone
-{
-    StateInterfaceone state1one = new State1one(this);
-    StateInterfaceone state2one = new State2one(this);
-    StateInterfaceone state3one = new State3one(this);
-
-   StateInterfaceone Current;
-   
+public class StateRouterone extends Actor {
+    
+    StateInterfaceone state1;
+    StateInterfaceone state2;
+    StateInterfaceone state3;
+    StateInterfaceone state4;
+    
+    StateInterfaceone currentState;
+    
     /**
      * Constructor for objects of class StateRouter
      */
-    public StateRouterone()
-    {
-        System.out.println("inside State Router con ");
-        
+   
+    public StateRouterone(){
+        state1 = new State1one(this);
+        state2 = new State2one(this);
+        state3 = new State3one(this);
+        state4 = new State4one(this);
     }
+    
+    public int level1(World world){
+        return currentState.level1(world);
+    }
+    
+    public int level2(World world){
+        return currentState.level2(world);
+    }
+    
+    public int level3(World world){
+        return currentState.level3(world);
+    }
+    
     public int throwQuestion(World world){
         System.out.println("Inside throw question");
         return 0;}
@@ -30,9 +46,8 @@ public class StateRouterone extends Actor implements StateInterfaceone
     {
         System.out.println("Inside throw router");
         World world = getWorld();
-  
-  Current.throwQuestion(world);
-    return 99999;
+        currentState.throwQuestion(world);
+        return 99999;
     }
     
 
@@ -42,35 +57,36 @@ public class StateRouterone extends Actor implements StateInterfaceone
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public int sampleMethod(int y)
+       
+    // @override
+    public void setState(StateInterfaceone state)
     {
-        // put your code here
-      return 0;
-    }
-   // @override
-    public void setState(StateInterfaceone S)
-    {
-       this.Current = S;
+       this.currentState = state;
     }
     
-    public StateInterfaceone getState1()
+        public StateInterfaceone getState1()
     {
-       return state1one;
+       return state1;
     }
     
     public StateInterfaceone getState2()
     {
-       return state2one;
+       return state2;
     }
     
     public StateInterfaceone getState3()
     {
-       return state3one;
+       return state3;
     }
     
-    public void onMousePress(int mouseX, int mouseY, Caption caption) 
+    public StateInterfaceone getState4()
     {
-             
+       return state4;
     }
     
+    public void onMousePress(int mouseX, int mouseY, Caption caption, World world){
+             currentState.onMousePress(mouseX, mouseY, caption, world);
+    }
+    
+       
 }

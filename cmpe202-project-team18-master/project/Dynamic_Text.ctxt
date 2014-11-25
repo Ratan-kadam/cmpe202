@@ -3,4 +3,6 @@ comment0.params=
 comment0.target=Dynamic_Text()
 comment1.params=txtadd\ world\ x1\ y1\ type
 comment1.target=void\ write_text(java.lang.String,\ greenfoot.World,\ int,\ int,\ int)
-numComments=2
+comment2.params=world
+comment2.target=void\ cleanUp(greenfoot.World)
+numComments=3
