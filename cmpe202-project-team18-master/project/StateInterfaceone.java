@@ -12,31 +12,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class StateInterfaceone  extends Actor
+public interface StateInterfaceone
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class StateInterface
-     */
-    public StateInterfaceone()
-    {
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    public int level1(World world);
+    public int level2(World world);
+    public int level3(World world);
     
-     public abstract  int throwQuestion(World world);
+    // instance variables - replace the example below with your own
+    public int throwQuestion(World world);
+    public void onMousePress(int x, int y, Caption c, World world);
    
 }
 

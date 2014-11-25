@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class GameController here.
@@ -8,9 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameController extends Actor
 {
+    private int gameover;
     private IScreen screen = null;
-     StateRouterone st = new StateRouterone();
-     StateInterfaceone st1 = new State1one(st);
+     StateRouterone stateRouter = new StateRouterone();
+     //StateInterfaceone state = new State1one(stateRouter);
+     StateInterfaceone state = stateRouter.getState1();
+     ScoreBoard scoreboard;
     //Project world = null;
     
     public GameController()
@@ -21,30 +25,36 @@ public class GameController extends Actor
        
     }
     
-    public void act() 
-    {
-        int mouseX, mouseY ;
+    public void act(){
+        int mouseX, mouseY, gameover ;
         if(Greenfoot.mousePressed(this)) {          
             MouseInfo mouse = Greenfoot.getMouseInfo();  
             mouseX=mouse.getX();  
-            mouseY=mouse.getY();  
+            mouseY=mouse.getY();
             if((mouseX >= 760 && mouseX <= 950) && (mouseY >= 500 && mouseY <=555)&&screen.getClass().getName()=="WelcomeScreen")
             {
                 System.out.println("play selected");    
                 setScreen(new GameScreen());
                 showQuestion();
-                    showProfessor();
-                    showPlayer();
-                   showScreen();
-                   level1(); 
-                  
-             
-             
-                   
-               
-             
+                showProfessor();
+                showPlayer();
+                showScore();
+                showScreen();
+                level1(); 
             }
-     }
+        }
+        List<Caption> c = getWorld().getObjects(Caption.class);
+            for(Caption caption : c){
+                if(Greenfoot.mousePressed(caption)) { 
+                    MouseInfo mouse = Greenfoot.getMouseInfo();  
+                    mouseX=mouse.getX();  
+                    mouseY=mouse.getY();
+                    stateRouter.onMousePress(mouseX, mouseY, caption, getWorld()); 
+                    gameover = stateRouter.level1(getWorld());
+                    gameover = stateRouter.level2(getWorld());
+                    gameover = stateRouter.level3(getWorld());
+                }
+            }
     } 
     
     public void showScreen()
@@ -82,30 +92,40 @@ public class GameController extends Actor
         Player player = new Player();
         world1.addObject(player,950,130);
     }
+    
+     public void showScore()
+    {
+        World world1 = getWorld();
+        scoreboard = new ScoreBoard();
+        world1.addObject(scoreboard,850,130);
+    }
+  
+    
     public void setScreen(IScreen sc)
     {
         screen = sc;
     }
     
-    public void level1()
-    {
-        
-        
-        System.out.println("level1 ");
+    public void level1(){
         World world = getWorld();
-        world.addObject(st,550,100);
-       // addObject(st,455,0); 
-        st.setState( st.getState1());
-          
-        // addObject(st1,455,0);
+        world.addObject(stateRouter,550,100);
+        world.addObject((State1one)state,550,100);
+        stateRouter.setState(stateRouter.getState1());
+        //int gameover = stateRouter.throwQuestionRouter();
+        int gameover = stateRouter.level1(world);
+   }
+   
+    public World getGameWorld()
+   {
+    World world = getWorld();
+    return world;
+    }
     
-     for ( int i=0 ; i < 3 ; i++)
+    public ScoreBoard getScoreBoard()
     {
-       int gameover = st.throwQuestionRouter();
-       
-        if (gameover == 1)
-           i = 3;
+        return scoreboard;
     }
-    }
+    
+   
     
 }

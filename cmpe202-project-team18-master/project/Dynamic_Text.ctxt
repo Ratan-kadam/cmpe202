@@ -1,6 +1,10 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Dynamic_Text()
-comment1.params=txtadd\ world\ x1\ y1
-comment1.target=void\ write_text(java.lang.String,\ greenfoot.World,\ int,\ int)
-numComments=2
+comment1.params=txtadd\ world\ x1\ y1\ type
+comment1.target=void\ write_text(java.lang.String,\ greenfoot.World,\ int,\ int,\ int)
+comment2.params=txtadd\ world\ x1\ y1\ type
+comment2.target=void\ writeScore(java.lang.String,\ greenfoot.World,\ int,\ int,\ int)
+comment3.params=world
+comment3.target=void\ cleanUp(greenfoot.World)
+numComments=4

@@ -1,5 +1,7 @@
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
+import java.util.*;
+import java.awt.Color;
 import java.io.InputStream;
 import java.io.BufferedReader; 
 import java.io.FileReader;
@@ -12,109 +14,142 @@ import java.io.FileNotFoundException;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class State1one extends StateInterfaceone
+public class State1one extends Actor implements StateInterfaceone
 {
-     // instance variables - replace the example below with your own
-    private int x;
-    private int QuestionCount = 1;
-    //static Dynamic_Text h2=new Dynamic_Text();
-    StateInterfaceone st;
+    private int x; 
+    private  static int answerIndex;
+    public static Integer questionCount = 1;
     StateRouterone sr;
-   // QuestionActor S1Q1 = new QuestionActor();
+    Map<String, List<String>> questionsMap = new HashMap<String, List<String>>();
+    static List<String> formatedQuestion = new ArrayList<String>();
+    GameController gc;
+    ScoreBoard scoreboard;
+    
+   
     /**
      * Constructor for objects of class State1
      */
-    public State1one( StateRouterone sr)
-    {
-    System.out.println("in state 1 ");
-     this.sr = sr;
-      GreenfootImage Image= getImage();
-            Image.scale( 40,40 );
-            setImage(Image);
-    
+    public State1one( StateRouterone sr){
+        this.sr = sr;
+        GreenfootImage Image= getImage();
+        Image.scale( 40,40 );
+        setImage(Image);        
     }
+    
+    public int level1(World world){
+        return throwQuestion(world);
+    }
+    
+    public int level2(World world){
+        return -1;
+    }
+    
+    public int level3(World world){
+        return -1;
+    }
+    
+   public List<String> getFormatedQuestion(){
+       return this.formatedQuestion;
+   } 
 
-  
+   public void setFormatedQuestion(List<String> list){
+       this.formatedQuestion = list;
+   }
+   
+   public int throwQuestion(World world){
+       String question,answer,option1,option2,option3, option4;
+       questionsMap = readAndparse();
+       if(questionCount <= questionsMap.keySet().size()){
+        setFormatedQuestion(questionsMap.get("Q".concat(questionCount.toString())));
+        int length = formatedQuestion.size();
+        answerIndex = Integer.parseInt(formatedQuestion.get(length-1));
+        question = formatedQuestion.get(0);
+        option1 = formatedQuestion.get(1);
+        option2 = formatedQuestion.get(2);
+        option3 = formatedQuestion.get(3);
+        option4 = formatedQuestion.get(4);
+        answer = formatedQuestion.get(answerIndex);
+        Dynamic_Text ob2 = Project.getDynamic_Text();
+        ob2.write_text(question,world,500,450,0);
+        ob2.write_text(option1,world,335,508,1);
+        ob2.write_text(option2,world,670,508,1);
+        ob2.write_text(option3,world,335,560,1);
+        ob2.write_text(option4,world,670,560,1);
+        questionCount++;
+        return 0;
+    }
+    else{
+        questionCount = 1;
+        sr.setState(sr.getState2());
+        return -1;
+    }
+         
+   }
     
-   public int throwQuestion(World world)
-    {
-        
-    //World world = getWorld();
-    System.out.println(" State1: In Throw question module ");
-    System.out.println("given Ans is correct.. moving to state 2");
-    Dynamic_Text ob2=Project.getDynamic_Text();
-     ob2.write_text("Question 1 : xxxxxxxxxxxxx",world,470,455);
-     ob2.write_text(" Option 1 : xxxxxxxxxxxxx",world,370,490);
-     ob2.write_text(" Option 2 : xxxxxxxxxxxxx",world,370,555);
-     ob2.write_text(" Option 3 : xxxxxxxxxxxxx",world,670,490);
-     ob2.write_text(" Option 4 : xxxxxxxxxxxxx",world,670,555);
-     
-    //S1Q1.displayQuestion("Welcome to Question1");
-     //world.addObject(this,200,200);
-  try {  
-    String input;  
-    BufferedReader file = new BufferedReader(new FileReader("./questionset/MediumSet.txt")); 
-    String input1 = file.readLine() ;
-    System.out.println("input1:" + input1);
+       
+    public void onMousePress(int mouseX, int mouseY, Caption caption, World world){
+       int optionClicked = Options.checkOption(mouseX, mouseY);
+       if(optionClicked != -1){
+           Color clr = java.awt.Color.RED;
+           if (optionClicked == answerIndex){
+               clr = java.awt.Color.GREEN;
+               
+               Project.setScore();
+               updatescoreboard();
+               
+           }
+           GreenfootImage gimg = caption.getImage();
+           gimg.setColor(clr);
+           gimg.setTransparency(255);
+           gimg.fill();
+           gimg.setColor(java.awt.Color.WHITE);
+           gimg.drawString(getFormatedQuestion().get(++optionClicked), 20, 10);
+           caption.setImage(gimg);           
+        }
+        Greenfoot.delay(500);
+       Project.getDynamic_Text().cleanUp(world);
+      } 
     
-    while ((input = file.readLine()) != null) {  
-      System.out.println("Now reading:");
-        System.out.println(input);//or whatever you want to do with the string; 
-        
-        ob2.write_text(input,world,470,355);
-    }  
-}  
-catch (FileNotFoundException fnfe) {//always catch the more specific Exceptions first; otherwhile the FileNotFoundException will be catched as a IOException because it's a subclass of IOException;  
-    System.out.println("exception file");
-    //fnfe.printStackTrace();  
-    //Also you can add any other code you want to execute if the file is not found;  
-}  
-catch (IOException ioe) {
-    System.out.println("exception file1");
-    //ioe.printStackTrace();  
-}  
-     
+       
+    public Map<String, List<String>> readAndparse(){
+      Integer i = 0;
+      String token1 = "\\?";
+      String token2 = "/";
+      Map<String, List<String>> questionAnswersMap = new HashMap<String, List<String>>();
+         try {  
+            String input = "";
+            BufferedReader file = new BufferedReader(new FileReader("./questionSet/Easy.txt")); 
+            while ((input = file.readLine()) != null) {  
+                System.out.println(input);
+                List<String> questionAnswersList = new ArrayList<String>();
+                String[] tempQnA = input.split(token1);
+                System.out.println(tempQnA[0].toString());
+                questionAnswersList.add(tempQnA[0]);
+                StringTokenizer tokenize = new StringTokenizer(tempQnA[1], token2);
+                while(tokenize.hasMoreElements()){
+                    questionAnswersList.add(tokenize.nextElement().toString());
+                }
+                String makeQ = "Q".concat((++i).toString());
+                questionAnswersMap.put(makeQ,questionAnswersList);
+            }  
+        }  
 
-  // sr.setState(sr.getState2());
-    
-    return 0;
-     
-    }
-    
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
-    
-     public void act() 
-    {
-        int mouseX, mouseY ;
-        if(Greenfoot.mousePressed(this)) {          
-            MouseInfo mouse = Greenfoot.getMouseInfo();  
-            mouseX=mouse.getX();  
-            mouseY=mouse.getY();  
-            if((mouseX >= 760 && mouseX <= 950) && (mouseY >= 500 && mouseY <=555))
-            {
-                System.out.println(" option selected...");    
-          
-            }
-     }
-    } 
-    
-    public String readText(int row) 
-    {  
-    //    InputStream is = getClass().getClassLoader().getResourceAsStream("pars.txt");  
-    //    BufferedReader r = new BufferedReader(new InputStreamReader(is));  
-  
-    //    String[] lines = new String[maxLevel-1];  
-  
-        //for (int i = 0; i < maxLevel-1; i++) {  
-    //        lines[i] = r.readLine();  
-       // }  
-  return "ccc";
-      // return lines[row];  
-    } 
-    
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }      
+        catch (IOException e) {
+            e.printStackTrace();
+        }    
+        return questionAnswersMap;  
 }
+
+public void updatescoreboard()
+{
+              gc = Project.getGameController();
+               scoreboard=gc.getScoreBoard();
+               scoreboard.update();
+}
+
+
+   }
 

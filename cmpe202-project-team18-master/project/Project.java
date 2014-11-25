@@ -9,9 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Project extends World
 {
       int gameover;
+      static int Score =0;
         static Dynamic_Text h2=new Dynamic_Text();
        StateRouterone st = new StateRouterone();
         StateInterfaceone st1 = new State1one(st);
+          static GameController gc;
 
     /**
      * Constructor for objects of class Project.
@@ -34,7 +36,7 @@ public class Project extends World
         //---------
       
         //-----
-        GameController gc = new GameController();
+         gc = new GameController();
         GreenfootImage blank = new GreenfootImage("./images/blank.jpeg");
         blank.scale(990,610);
         gc.setImage(blank);
@@ -89,4 +91,20 @@ public class Project extends World
     {
      return h2;
     }
+    
+    public static int getScore()
+    {
+     return  Score;
+    }
+    
+    public static void setScore()
+    {
+      Score = Score + 10;
+      System.out.println("Increased Score by 10 points");
+    }
+    
+    public static GameController getGameController()
+     {
+       return gc;
+     }        
 }

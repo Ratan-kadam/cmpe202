@@ -1,10 +1,12 @@
 #BlueJ class context
-comment0.params=
-comment0.target=StateInterfaceone()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ StateInterface\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
+comment0.params=world
+comment0.target=int\ level1(greenfoot.World)
+comment1.params=world
+comment1.target=int\ level2(greenfoot.World)
 comment2.params=world
-comment2.target=int\ throwQuestion(greenfoot.World)
-numComments=3
+comment2.target=int\ level3(greenfoot.World)
+comment3.params=world
+comment3.target=int\ throwQuestion(greenfoot.World)
+comment4.params=x\ y\ c\ world
+comment4.target=void\ onMousePress(int,\ int,\ Caption,\ greenfoot.World)
+numComments=5
