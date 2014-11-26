@@ -22,6 +22,9 @@ public class State2one extends Actor implements StateInterfaceone
     StateRouterone sr;
     Map<String, List<String>> questionsMap = new HashMap<String, List<String>>();
     static List<String> formatedQuestion = new ArrayList<String>();
+    GameController gc;
+    ScoreBoard scoreboard;
+    
 
     /**
      * Constructor for objects of class State2
@@ -88,6 +91,9 @@ public class State2one extends Actor implements StateInterfaceone
            Color clr = java.awt.Color.RED;
            if (optionClicked == answerIndex){
                clr = java.awt.Color.GREEN;
+               Project.setScore();
+               updatescoreboard();
+               System.out.println (" State 2 score changed ");
            }
            GreenfootImage gimg = caption.getImage();
            gimg.setColor(clr);
@@ -130,6 +136,14 @@ public class State2one extends Actor implements StateInterfaceone
         }    
         return questionAnswersMap;  
 }
+
+public void updatescoreboard()
+{
+              gc = Project.getGameController();
+               scoreboard=gc.getScoreBoard();
+               scoreboard.update();
+}
+
 
      
 }

@@ -51,7 +51,7 @@ public class Dynamic_Text extends Caption
         //gimg.setTransparency(255);
         Font myFont = new Font("SANS_SERIF", Font.BOLD, 24);
         gimg.setFont(myFont);
-        System.out.println("text add:" + txtadd);
+        //System.out.println("text add:" + txtadd);
         gimg.drawString(txtadd,50, 20);
         msg.setImage(gimg);
         world.addObject(msg,x1,y1);
