@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Project extends World
 {
-      int gameover;
+      static double GPA = 0.0;
       static int Score =0;
+      static int Lives =3;
         static Dynamic_Text h2=new Dynamic_Text();
        StateRouterone st = new StateRouterone();
         StateInterfaceone st1 = new State1one(st);
@@ -37,7 +38,7 @@ public class Project extends World
       
         //-----
          gc = new GameController();
-        GreenfootImage blank = new GreenfootImage("./images/blank.jpeg");
+        GreenfootImage blank = new GreenfootImage("./images/blank.jpg");
         blank.scale(990,610);
         gc.setImage(blank);
         addObject(gc,484,318);
@@ -97,14 +98,26 @@ public class Project extends World
      return  Score;
     }
     
-    public static void setScore()
+    public static void setScore(int score)
     {
-      Score = Score + 10;
+      Score = Score + score;
       System.out.println("Increased Score by 10 points");
     }
     
     public static GameController getGameController()
      {
        return gc;
-     }        
+     }  
+     
+      public static void setLives()
+    {
+      Lives = Lives - 1;
+      System.out.println("Lives decresed by 1 ");
+    }
+    
+     public static int getLives()
+    {
+      return Lives;
+    }
 }
+  

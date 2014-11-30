@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 public class State1one extends Actor implements StateInterfaceone
 {
     private int x; 
+    //int Wrong-Ans;
     private  static int answerIndex;
     public static Integer questionCount = 1;
     StateRouterone sr;
@@ -45,6 +46,10 @@ public class State1one extends Actor implements StateInterfaceone
     }
     
     public int level3(World world){
+        return -1;
+    }
+    
+    public int level4(World world){
         return -1;
     }
     
@@ -89,15 +94,23 @@ public class State1one extends Actor implements StateInterfaceone
        
     public void onMousePress(int mouseX, int mouseY, Caption caption, World world){
        int optionClicked = Options.checkOption(mouseX, mouseY);
+       int Wrong_Ans;
        if(optionClicked != -1){
            Color clr = java.awt.Color.RED;
            if (optionClicked == answerIndex){
                clr = java.awt.Color.GREEN;
-               
-               Project.setScore();
-               updatescoreboard();
-               
+               Project.setScore(10);
+               updateScoreboard();
            }
+           else 
+           {
+             Project.setLives();
+             updateScoreboard();
+             if(Project.getLives()==0)
+             {      //break;
+                 sr.setState(sr.getState4());
+               }
+            }
            GreenfootImage gimg = caption.getImage();
            gimg.setColor(clr);
            gimg.setTransparency(255);
@@ -143,11 +156,12 @@ public class State1one extends Actor implements StateInterfaceone
         return questionAnswersMap;  
 }
 
-public void updatescoreboard()
+public void updateScoreboard()
 {
               gc = Project.getGameController();
                scoreboard=gc.getScoreBoard();
                scoreboard.update();
+               
 }
 
 

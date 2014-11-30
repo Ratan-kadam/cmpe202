@@ -17,6 +17,7 @@ public interface StateInterfaceone
     public int level1(World world);
     public int level2(World world);
     public int level3(World world);
+    public int level4(World world);
     
     // instance variables - replace the example below with your own
     public int throwQuestion(World world);

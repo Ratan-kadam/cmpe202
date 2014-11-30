@@ -40,14 +40,11 @@ public class Dynamic_Text extends Caption
     public void writeScore(String txtadd, World world,int x1,int y1, int type){
        Caption  msg= new Caption();
        GreenfootImage gimg;
-       gimg = new GreenfootImage(320,222);
-       if(type == 0){
-           gimg = new GreenfootImage(600,40);
-        }
+       gimg = new GreenfootImage(600,40);
         //gimg.setColor(java.awt.Color.BLACK);
         gimg.setTransparency(255);
         //gimg.fill();
-        gimg.setColor(java.awt.Color.WHITE);
+        gimg.setColor(java.awt.Color.RED);
         //gimg.setTransparency(255);
         Font myFont = new Font("SANS_SERIF", Font.BOLD, 24);
         gimg.setFont(myFont);
@@ -58,14 +55,12 @@ public class Dynamic_Text extends Caption
       }
       
       public void cleanUp(World world){
-         System.out.println("World is :" + world);
         List<Caption> c = world.getObjects(Caption.class);
         int i = 0;
         if (null != c && c.size() > 0){
                 for(Caption caption : c){
                  world.removeObject(caption);
-                 System.out.println("Captions remved: " + ++i);
-            }
+               }
         }
         
       }

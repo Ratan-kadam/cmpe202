@@ -7,6 +7,7 @@ public class ScoreBoard extends Actor
     private GreenfootImage background;
     private Player player;
     String score = "";
+    String lives ="";
     
     public ScoreBoard()
     {
@@ -25,44 +26,50 @@ public class ScoreBoard extends Actor
        // System.out.println("Inside act()");
     }
    
-    public void displayLives(GreenfootImage image)
-    {
-        GreenfootImage lives[]=new GreenfootImage[3];
-        // todo at constructor
-        for(int i=0;i<3;i++)
-        {
-            lives[i]= new GreenfootImage("life.png");
-            lives[i].scale(50,50);
-        }
-        
-        // lives => displaying lives on scoreboard
-        //int no_of_lives= player.getLives();
-        
-       // for(int i=0;i<no_of_lives; i++)
-        for(int i=0;i<2; i++)
-        {
-            image.drawImage(lives[i], 50+(i*80), 150);
-        }
-        
-    }
-    
+ 
     //Displat score act as a Update method 
     private void displayScore()
     {
+       // GreenfootImage image;
+        GreenfootImage livesCount[]=new GreenfootImage[3];
        
         Dynamic_Text ob2 = Project.getDynamic_Text();
         
         ob2.writeScore(score,getWorld(),1290,110,0);
-    
         
-      
+        ob2.writeScore(lives,getWorld(),1350,230,0);
+       // for(int i=0;i<3;i++)
+        //{
+        //    livesCount[i]= new GreenfootImage("./images/life.png");
+        //    livesCount[i].scale(50,50);
+       // }
+        
+      //  for(int i=0;i<3; i++)
+      //  {
+      //    GreenfootImage image;
+      //    image.drawImage(livesCount[i], 50+(i*80), 150);
+      //  }
+    
     }
     
     public void update() {
-        System.out.println("Inside update score board function ");
-        score = "" +  Project.getScore(); 
-        displayScore();
-	}
+        score = "" +  Project.getScore();
+        int curr_lives = Project.getLives();
+        GameController gc = Project.getGameController();
+        if ( curr_lives  < 0)
+         { 
+           IScreen gameOver = new GameOverScreen();   
+           gc.setScreen(gameOver);
+           gc.showScreen();
+           // Greenfoot.delay(5);
+            displayScore();
+         }
+         else
+         { 
+            lives = "" + Project.getLives();
+            displayScore();
+        }
 }
 
+}
 

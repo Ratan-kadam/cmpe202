@@ -38,13 +38,16 @@ public class StateRouterone extends Actor {
         return currentState.level3(world);
     }
     
+    public int level4(World world){
+        return currentState.level4(world);
+    }
+    
     public int throwQuestion(World world){
-        System.out.println("Inside throw question");
-        return 0;}
+      return 0;
+    }
     
     public int throwQuestionRouter()
     {
-        System.out.println("Inside throw router");
         World world = getWorld();
         currentState.throwQuestion(world);
         return 99999;
@@ -82,6 +85,11 @@ public class StateRouterone extends Actor {
     public StateInterfaceone getState4()
     {
        return state4;
+    }
+
+    public StateInterfaceone getCurrentState()
+    {
+       return currentState;
     }
     
     public void onMousePress(int mouseX, int mouseY, Caption caption, World world){

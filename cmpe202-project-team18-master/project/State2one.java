@@ -55,6 +55,10 @@ public class State2one extends Actor implements StateInterfaceone
         return -1;
     }
     
+    public int level4(World world){
+        return -1;
+    }
+    
     public int throwQuestion(World world){
         String question,answer,option1,option2,option3, option4;
        questionsMap = readAndparse();
@@ -91,10 +95,18 @@ public class State2one extends Actor implements StateInterfaceone
            Color clr = java.awt.Color.RED;
            if (optionClicked == answerIndex){
                clr = java.awt.Color.GREEN;
-               Project.setScore();
-               updatescoreboard();
+               Project.setScore(20);
+               updateScoreboard();
                System.out.println (" State 2 score changed ");
            }
+           else 
+           {
+             Project.setLives();
+             updateScoreboard();
+             if(Project.getLives()== 0)
+             {    sr.setState(sr.getState4());
+               }
+            }
            GreenfootImage gimg = caption.getImage();
            gimg.setColor(clr);
            gimg.setTransparency(255);
@@ -137,7 +149,7 @@ public class State2one extends Actor implements StateInterfaceone
         return questionAnswersMap;  
 }
 
-public void updatescoreboard()
+public void updateScoreboard()
 {
               gc = Project.getGameController();
                scoreboard=gc.getScoreBoard();

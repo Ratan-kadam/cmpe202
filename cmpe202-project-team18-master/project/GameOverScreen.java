@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class GameOverScreen here.
  * 
@@ -27,5 +28,12 @@ public class GameOverScreen extends Screen
     {
         // put your code here
         return x + y;
+    }
+    
+    public GreenfootImage getScreen()
+    {
+        GreenfootImage greenfootImage = new GreenfootImage("./images/GameOver.png");
+       // greenfootImage.scale(96, 181);
+        return greenfootImage;
     }
 }

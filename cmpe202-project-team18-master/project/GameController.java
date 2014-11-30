@@ -53,12 +53,30 @@ public class GameController extends Actor
                     gameover = stateRouter.level1(getWorld());
                     gameover = stateRouter.level2(getWorld());
                     gameover = stateRouter.level3(getWorld());
+                    gameover = stateRouter.level4(getWorld());
+                    if ((stateRouter.getCurrentState()) instanceof State4one){
+                        World world1 = getWorld();
+                        List<Actor> actors = world1.getObjects(Actor.class);
+                        actors.remove(actors.indexOf(scoreboard));
+                        world1.removeObjects(actors);
+                        String gpa = "GPA: " + Project.GPA;
+                        Dynamic_Text ob2 = Project.getDynamic_Text();
+                        ob2.writeScore(gpa,world1,1360,140,0);
+                        setScreen(new GameOverScreen());
+                        GreenfootImage gi =  screen.getScreen();
+                        gi.scale(1347, 537);
+                        gi.setTransparency(100);
+                        this.setImage(gi);
+                        world1.repaint();
+                        world1.addObject(this,500,300);
+                    }
                 }
             }
     } 
     
     public void showScreen()
     {
+        
         GreenfootImage gi =  screen.getScreen();
         //System.out.println(screen.getClass().getName());
         this.setImage(gi);
