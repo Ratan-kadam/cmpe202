@@ -41,9 +41,9 @@ public class Dynamic_Text extends Caption
        Caption  msg= new Caption();
        GreenfootImage gimg;
        gimg = new GreenfootImage(600,40);
-        //gimg.setColor(java.awt.Color.BLACK);
+    
         gimg.setTransparency(255);
-        //gimg.fill();
+ 
         gimg.setColor(java.awt.Color.RED);
         //gimg.setTransparency(255);
         Font myFont = new Font("SANS_SERIF", Font.BOLD, 24);

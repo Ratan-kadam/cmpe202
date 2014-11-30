@@ -20,5 +20,33 @@ public class Professor extends Actor
     public void act() 
     {
         // Add your action code here.
-    }    
+    }  
+    
+    public void calculateGPA()
+    {
+    
+    if (Project.Score >=  50){
+            if(Project.Score >=  200){
+                if(Project.Score >=  300){
+                    if(Project.Lives == 3){
+                        Project.GPA = 4.0;
+                    }
+                    else {
+                        Project.GPA = 3.75;
+                    }
+                }
+            else {
+                Project.GPA = 3.3;
+            }
+        }
+        else {
+            Project.GPA = 2.5;
+        }
+    }
+    else {
+        Project.GPA = 2.0;
+    }
+    
+    }
+    
 }

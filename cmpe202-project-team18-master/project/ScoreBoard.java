@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 
-public class ScoreBoard extends Actor 
+public class ScoreBoard extends Actor implements Observer
 {
     private static final Color transparent = new Color(0,0,0,0);
     private GreenfootImage background;
