@@ -14,27 +14,27 @@ public class Professor extends Actor
      */
     public Professor()
     {
-        GreenfootImage professor = new GreenfootImage("./images/Paul.png");
+        GreenfootImage professor = new GreenfootImage("./images/Professor.png");
+        professor.scale(150, 150);
         this.setImage(professor);
     }
     public void act() 
     {
         // Add your action code here.
-    }  
+    }
     
-    public void calculateGPA()
+     public void calculateGPA()
     {
-    
     if (Project.Score >=  50){
-            if(Project.Score >=  200){
-                if(Project.Score >=  300){
+        if(Project.Score >=  200){
+            if(Project.Score >=  300){
                     if(Project.Lives == 3){
                         Project.GPA = 4.0;
                     }
                     else {
                         Project.GPA = 3.75;
                     }
-                }
+            }
             else {
                 Project.GPA = 3.3;
             }

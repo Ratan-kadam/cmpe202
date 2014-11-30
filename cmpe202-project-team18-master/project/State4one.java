@@ -10,8 +10,8 @@ import java.util.*;
 public class State4one extends Actor implements StateInterfaceone
 {
     StateRouterone sr;
-    Target target = new GpaAdapter();
     public static Integer questionCount = 1;
+    Target target = new GpaAdapter();
    
     /**
      * Constructor for objects of class State4one
@@ -38,13 +38,28 @@ public class State4one extends Actor implements StateInterfaceone
        return -1;
     }
     
-    public int level4(World world){
-     
-     target.calculateMarks();
+    public int level4(World world1){
+        if(null != world1){
+        target.calculateMarks();
+        List<Actor> actors = world1.getObjects(Actor.class);
+        actors.remove(actors.indexOf(Project.getGameController().getScoreBoard()));
+        world1.removeObjects(actors);
+        String gpa = "GPA: " + Project.GPA;
+        Dynamic_Text ob2 = Project.getDynamic_Text();
+        ob2.writeScore(gpa,world1,2500,140,0);
+        GreenfootImage gi =  this.getImage();
+        gi.scale(1347, 537);
+        gi.setTransparency(160);
+        this.setImage(gi);
+        world1.repaint();
+        world1.addObject(this,500,300);
+        }
         return -1;
     }
     
     public int throwQuestion(World world){return -1;}
     public void onMousePress(int x, int y, Caption c, World world){}
+    public void update(){
+    }
      
 }

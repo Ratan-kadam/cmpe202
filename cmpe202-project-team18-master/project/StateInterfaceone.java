@@ -19,6 +19,7 @@ public interface StateInterfaceone
     public int level3(World world);
     public int level4(World world);
     
+    public void update();
     // instance variables - replace the example below with your own
     public int throwQuestion(World world);
     public void onMousePress(int x, int y, Caption c, World world);

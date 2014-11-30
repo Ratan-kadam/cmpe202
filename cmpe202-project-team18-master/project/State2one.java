@@ -24,6 +24,7 @@ public class State2one extends Actor implements StateInterfaceone
     static List<String> formatedQuestion = new ArrayList<String>();
     GameController gc;
     ScoreBoard scoreboard;
+    Thread thread;
     
 
     /**
@@ -32,6 +33,9 @@ public class State2one extends Actor implements StateInterfaceone
     
     
     public State2one(StateRouterone sr){
+         GreenfootImage img = getImage();
+        img.scale(150,100);
+        setImage(img);
        this.sr = sr;
     }
     
@@ -59,51 +63,60 @@ public class State2one extends Actor implements StateInterfaceone
         return -1;
     }
     
-    public int throwQuestion(World world){
-        String question,answer,option1,option2,option3, option4;
-       questionsMap = readAndparse();
-       if(questionCount <= questionsMap.keySet().size()){
-        setFormatedQuestion(questionsMap.get("Q".concat(questionCount.toString())));
-        int length = formatedQuestion.size();
-        answerIndex = Integer.parseInt(formatedQuestion.get(length-1));
-        question = formatedQuestion.get(0);
-        option1 = formatedQuestion.get(1);
-        option2 = formatedQuestion.get(2);
-        option3 = formatedQuestion.get(3);
-        option4 = formatedQuestion.get(4);
-        answer = formatedQuestion.get(answerIndex);
-        Dynamic_Text ob2 = Project.getDynamic_Text();
-        ob2.write_text(question,world,500,450,0);
-        ob2.write_text(option1,world,335,508,1);
-        ob2.write_text(option2,world,670,508,1);
-        ob2.write_text(option3,world,335,560,1);
-        ob2.write_text(option4,world,670,560,1);
-        questionCount++;
-        return 0;
-    }
-    else{
-        questionCount = 1;
-        sr.setState(sr.getState3());
+    synchronized public int throwQuestion(World world){
+        if(null != world){
+            Project.getDynamic_Text().cleanUp(world);
+            (new Thread(Project.getGameController().getTimer())).start();
+            String question,answer,option1,option2,option3, option4;
+            questionsMap = readAndparse();
+            if(questionCount <= questionsMap.keySet().size()){
+            setFormatedQuestion(questionsMap.get("Q".concat(questionCount.toString())));
+            int length = formatedQuestion.size();
+            answerIndex = Integer.parseInt(formatedQuestion.get(length-1));
+            question = formatedQuestion.get(0);
+            option1 = formatedQuestion.get(1);
+            option2 = formatedQuestion.get(2);
+            option3 = formatedQuestion.get(3);
+            option4 = formatedQuestion.get(4);
+            answer = formatedQuestion.get(answerIndex);
+            Dynamic_Text ob2 = Project.getDynamic_Text();
+            ob2.write_text(question,world,500,450,0);
+            ob2.write_text(option1,world,335,503,1);
+            ob2.write_text(option2,world,670,503,1);
+            ob2.write_text(option3,world,335,555,1);
+            ob2.write_text(option4,world,670,555,1);
+            questionCount++;
+            return 0;
+        }
+        else{
+            questionCount = 1;
+            world.removeObject((Actor)sr.getState1());
+            world.addObject((Actor)sr.getState3(),200,100);
+            sr.setState(sr.getState3());
+            return -1;
+        }
+        }
         return -1;
     }
-    }
+        
     
     public void onMousePress(int mouseX, int mouseY, Caption caption , World world) 
     {
+        Timer.isActive = false;
        int optionClicked = Options.checkOption(mouseX, mouseY);
        if(optionClicked != -1){
+           Timer.count = 10;
            Color clr = java.awt.Color.RED;
            if (optionClicked == answerIndex){
                clr = java.awt.Color.GREEN;
                Project.setScore(20);
                updateScoreboard();
-               System.out.println (" State 2 score changed ");
-           }
+             }
            else 
            {
              Project.setLives();
-             updateScoreboard();
-             if(Project.getLives()== 0)
+             updateScoreboard();             
+             if(Project.getLives() == 0)
              {    sr.setState(sr.getState4());
                }
             }
@@ -112,11 +125,12 @@ public class State2one extends Actor implements StateInterfaceone
            gimg.setTransparency(255);
            gimg.fill();
            gimg.setColor(java.awt.Color.WHITE);
-           gimg.drawString(getFormatedQuestion().get(++optionClicked), 20, 10);
+           gimg.drawString(getFormatedQuestion().get(++optionClicked), 20, 19);
            caption.setImage(gimg);           
         }
-        Greenfoot.delay(500);
-       Project.getDynamic_Text().cleanUp(world);
+        Greenfoot.delay(50);
+        Timer.isActive = true;
+       
     } 
     
     public Map<String, List<String>> readAndparse(){
@@ -149,14 +163,25 @@ public class State2one extends Actor implements StateInterfaceone
         return questionAnswersMap;  
 }
 
-public void updateScoreboard()
-{
-              gc = Project.getGameController();
-               scoreboard=gc.getScoreBoard();
-               scoreboard.update();
-}
+        public void updateScoreboard()
+        {
+          gc = Project.getGameController();
+           scoreboard=gc.getScoreBoard();
+           scoreboard.update();
+            if(Project.getLives() == 0){ 
+                 sr.setState(sr.getState4());
+                 sr.level4(getWorld());                
+                }
+        }
 
-
+       public void update(){
+           
+           if(null != getWorld()){
+                Project.setLives();
+                if(Project.getLives() != 0)
+                    throwQuestion(getWorld());
+            }
+        }
      
 }
 

@@ -15,11 +15,11 @@ public class Options extends Actor
     
     public static void setOptions(){
         Ax1 = Cx1 = 235;
-        Ay1 = By1 = 500;
+        Ay1 = By1 = 480;
         Ax2 = Cx2 = 500;
         Ay2 = By2 = 516;
         Bx1 = Dx1 = 570;
-        Cy1 = Dy1 = 552;
+        Cy1 = Dy1 = 532;
         Cy2 = Dy2 = 576;
         Bx2 = Dx2 = 835;
         

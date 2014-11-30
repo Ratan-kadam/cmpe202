@@ -36,4 +36,5 @@ public class GameOverScreen extends Screen
        // greenfootImage.scale(96, 181);
         return greenfootImage;
     }
+    
 }

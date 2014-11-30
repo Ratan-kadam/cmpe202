@@ -9,31 +9,38 @@ import java.util.*;
  */
 public class GameController extends Actor
 {
-    private int gameover;
+    private int i= 1, gameover;
     private IScreen screen = null;
      StateRouterone stateRouter = new StateRouterone();
-     //StateInterfaceone state = new State1one(stateRouter);
      StateInterfaceone state = stateRouter.getState1();
      ScoreBoard scoreboard;
-    //Project world = null;
+     Timer t;
+     Thread timer;
     
     public GameController()
     {
-        //world = project;
-        
+        t = new Timer(10);
+       // timer = new Thread(t);
         screen = new WelcomeScreen();
        
     }
     
+    public Timer getTimer(){
+        return t;
+    }
+    
     public void act(){
         int mouseX, mouseY, gameover ;
+        if (i == 1){
+            Greenfoot.playSound("./sounds/KBC_intro.mp3");
+            i--;
+        }
         if(Greenfoot.mousePressed(this)) {          
             MouseInfo mouse = Greenfoot.getMouseInfo();  
             mouseX=mouse.getX();  
             mouseY=mouse.getY();
             if((mouseX >= 760 && mouseX <= 950) && (mouseY >= 500 && mouseY <=555)&&screen.getClass().getName()=="WelcomeScreen")
             {
-                System.out.println("play selected");    
                 setScreen(new GameScreen());
                 showQuestion();
                 showProfessor();
@@ -54,47 +61,28 @@ public class GameController extends Actor
                     gameover = stateRouter.level2(getWorld());
                     gameover = stateRouter.level3(getWorld());
                     gameover = stateRouter.level4(getWorld());
-                    if ((stateRouter.getCurrentState()) instanceof State4one){
-                        World world1 = getWorld();
-                        List<Actor> actors = world1.getObjects(Actor.class);
-                        actors.remove(actors.indexOf(scoreboard));
-                        world1.removeObjects(actors);
-                        String gpa = "GPA: " + Project.GPA;
-                        Dynamic_Text ob2 = Project.getDynamic_Text();
-                        ob2.writeScore(gpa,world1,1360,140,0);
-                        setScreen(new GameOverScreen());
-                        GreenfootImage gi =  screen.getScreen();
-                        gi.scale(1347, 537);
-                        gi.setTransparency(100);
-                        this.setImage(gi);
-                        world1.repaint();
-                        world1.addObject(this,500,300);
-                    }
-                }
+                   }
             }
     } 
     
     public void showScreen()
     {
-        
         GreenfootImage gi =  screen.getScreen();
-        //System.out.println(screen.getClass().getName());
         this.setImage(gi);
         World world1 = getWorld();
         world1.addObject(this, 900, 118);
-        /*World world = getWorld();
-        Welcome screen1 = new Welcome();
-        GreenfootImage welcomeBackground = new GreenfootImage("./images/WelcomeScreen.png");
-        welcomeBackground.scale(1347, 537);
-        screen1.setImage(welcomeBackground);
-        world.addObject(screen1, 484, 318);*/
+       
+    }
+    
+    public IScreen getScreen(){
+        return screen;
     }
     
     public void showProfessor()
     {
         World world1 = getWorld();
         Professor professor = new Professor();
-        world1.addObject(professor,284,318);
+        world1.addObject(professor,900,350);
     }
     
     public void showQuestion()
@@ -108,7 +96,7 @@ public class GameController extends Actor
     {
         World world1 = getWorld();
         Player player = new Player();
-        world1.addObject(player,950,130);
+        world1.addObject(player,100,340);
     }
     
      public void showScore()
@@ -127,10 +115,16 @@ public class GameController extends Actor
     public void level1(){
         World world = getWorld();
         world.addObject(stateRouter,550,100);
-        world.addObject((State1one)state,550,100);
+        world.addObject((Actor)stateRouter.getState1(),200,100);
         stateRouter.setState(stateRouter.getState1());
-        //int gameover = stateRouter.throwQuestionRouter();
         int gameover = stateRouter.level1(world);
+        t.attach(stateRouter.getState1());
+        t.attach(stateRouter.getState2());
+        t.attach(stateRouter.getState3());
+        world.addObject(t,480,350);
+        BackgroundSound sound = new BackgroundSound();
+        world.addObject(sound,100,100);
+        
    }
    
     public World getGameWorld()

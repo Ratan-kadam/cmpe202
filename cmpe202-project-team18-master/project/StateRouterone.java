@@ -12,7 +12,6 @@ public class StateRouterone extends Actor {
     StateInterfaceone state2;
     StateInterfaceone state3;
     StateInterfaceone state4;
-    
     StateInterfaceone currentState;
     
     /**
