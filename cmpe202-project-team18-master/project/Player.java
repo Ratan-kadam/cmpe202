@@ -12,9 +12,9 @@ public class Player extends Actor
 { 
     public Player()
     {
-        GreenfootImage player = new GreenfootImage("./images/spartan.png");
-        player.scale(150, 150);
-        this.setImage(player);
+        //GreenfootImage player = new GreenfootImage("./images/spartan.png");
+        //player.scale(150, 150);
+        //this.setImage(player);
     }
     public void act() 
     {

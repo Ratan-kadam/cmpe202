@@ -14,13 +14,13 @@ public class Options extends Actor
     private static int Dx1, Dy1, Dx2, Dy2;
     
     public static void setOptions(){
-        Ax1 = Cx1 = 235;
-        Ay1 = By1 = 480;
-        Ax2 = Cx2 = 500;
-        Ay2 = By2 = 516;
+        Ax1 = Cx1 = 260;
+        Ay1 = By1 = 520;
+        Ax2 = Cx2 = 540;
+        Ay2 = By2 = 550;
         Bx1 = Dx1 = 570;
-        Cy1 = Dy1 = 532;
-        Cy2 = Dy2 = 576;
+        Cy1 = Dy1 = 560;
+        Cy2 = Dy2 = 590;
         Bx2 = Dx2 = 835;
         
     }

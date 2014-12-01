@@ -1,12 +1,10 @@
-______ is a word for "commonplace statement"?Antique/Jaunt/Regime/Platitude/3
-______ is a word for "the hands or mind"?Adroit/Abhor/Bigot/Kindle/0
-______ is a word for "misleading"?Frantic/Delusive/Extort/Ferment/0
-______ is a word for "changing its habitat or wandering"?Eclectic/Pedantic/Homely/Migrant/3
-______ is a word for "animal or plant living on another"?Crone/Infantile/Parasite/Pervert/2
-______ is a word for "having the power of springing back"?Resilient/Erratic/Intrude/Linger/0
-______ is a word for "rushing stream"?Musty/Lewd/Nectar/Torrent/3
-______ is a word for "unexpected lucky event"?Indulge/Nimble/Windfall/Occlude/2
-______ is a word for "eager enthusiasm"?Nectar/Novelty/Fulsome/Zeal/3
-______ is a word for "original work used as a model by others"?Prototype/Synoptic/Novice/Paradox/0
-______ is a word for "very small quantity"?Cull/Exult/Iota/Perigee/2
-______ is a word for "essential or main point"?Fissure/Crux/Impart/Jaunt/1
+A Pattern where access control can be added to Object?Proxy/Chain/Adapter/Composite/0
+Abstracts different algorithms for interchangable?Observer/Strategy/Adapter/Composite/1
+Use this pattern to clone ?Observer/Strategy/Prototype/Composite/2
+The Pattern expands the idea behind the factory method?Abstract factory/Strategy/Prototype/Composite/0
+Pattern that is used for asynchronous calls?Abstract factory/Command/Prototype/Composite/2
+Pattern that be applied to class and object ?Adapter/Command/Prototype/Composite/0
+Number of GOF creational Patterns?0/5/2/1/1
+Single simplified interface over many interfaces?Observer/Strategy/Facade/Composite/2
+Pattern that abstract the construction process?Builder/Chain/Adapter/Composite/0
+Pattern used when the interface of an object change ?Observer/Chain/Adapter/Composite/2

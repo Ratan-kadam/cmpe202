@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Project extends World
 {
      static double GPA = 0.0;
-     static int Score =0;
-     static int Lives =3;
+     static int Score = 0;
+     static int Lives = 3;
      static Dynamic_Text h2=new Dynamic_Text();
      StateRouterone st = new StateRouterone();
      StateInterfaceone st1 = new State1one(st);

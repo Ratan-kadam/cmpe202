@@ -115,13 +115,13 @@ public class GameController extends Actor
     public void level1(){
         World world = getWorld();
         world.addObject(stateRouter,550,100);
-        world.addObject((Actor)stateRouter.getState1(),200,100);
+        world.addObject((Actor)stateRouter.getState1(),900,140);
         stateRouter.setState(stateRouter.getState1());
         int gameover = stateRouter.level1(world);
         t.attach(stateRouter.getState1());
         t.attach(stateRouter.getState2());
         t.attach(stateRouter.getState3());
-        world.addObject(t,480,350);
+        world.addObject(t,495,230);
         BackgroundSound sound = new BackgroundSound();
         world.addObject(sound,100,100);
         

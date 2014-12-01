@@ -57,7 +57,7 @@ public class Timer extends Actor implements Runnable
         String s = "00" + secs;  
         while (s.length() > 2) s = s.substring(1);  
         String text = s ;  
-        GreenfootImage textImage = new GreenfootImage(text, 70, Color.RED, new Color(0, 0, 0, 0));  
+        GreenfootImage textImage = new GreenfootImage(text, 70, Color.ORANGE, new Color(0, 0, 0, 0));  
         setImage(textImage);  
     }  
   

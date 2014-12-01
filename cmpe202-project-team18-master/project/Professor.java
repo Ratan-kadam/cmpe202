@@ -14,9 +14,9 @@ public class Professor extends Actor
      */
     public Professor()
     {
-        GreenfootImage professor = new GreenfootImage("./images/Professor.png");
-        professor.scale(150, 150);
-        this.setImage(professor);
+        //GreenfootImage professor = new GreenfootImage("./images/Professor.png");
+        //professor.scale(150, 150);
+        //this.setImage(professor);
     }
     public void act() 
     {

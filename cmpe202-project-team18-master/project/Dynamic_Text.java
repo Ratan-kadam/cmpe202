@@ -37,12 +37,24 @@ public class Dynamic_Text extends Caption
     public void writeScore(String txtadd, World world,int x1,int y1, int type){
        Caption  msg= new Caption();
        GreenfootImage gimg;
-       gimg = new GreenfootImage(600,40);
-       gimg.setTransparency(255);
-        gimg.setColor(java.awt.Color.RED);
-        Font myFont = new Font("SANS_SERIF", Font.BOLD, 24);
-        gimg.setFont(myFont);
-        gimg.drawString(txtadd,50, 20);
+       Font myFont;
+        if(type == -1)
+        {
+            gimg = new GreenfootImage(500,100);
+            myFont = new Font("SANS_SERIF", Font.BOLD, 42);
+            gimg.setColor(java.awt.Color.BLUE);
+            gimg.setFont(myFont);
+            gimg.drawString(txtadd,50, 40);
+        }
+        else{
+            gimg = new GreenfootImage(600,40);
+            gimg.setTransparency(255);
+            gimg.setColor(java.awt.Color.RED);
+            myFont = new Font("SANS_SERIF", Font.BOLD, 24);
+            gimg.setFont(myFont);
+            gimg.drawString(txtadd,50, 20);
+        }
+        
         msg.setImage(gimg);
         world.addObject(msg,x1,y1);
       }

@@ -42,17 +42,23 @@ public class State4one extends Actor implements StateInterfaceone
         if(null != world1){
         target.calculateMarks();
         List<Actor> actors = world1.getObjects(Actor.class);
+        List <BackgroundSound> a = world1.getObjects(BackgroundSound.class);// BackGroundSound));
+         for(BackgroundSound i:a){
+             i.gs.stop();
+         }
         actors.remove(actors.indexOf(Project.getGameController().getScoreBoard()));
         world1.removeObjects(actors);
         String gpa = "GPA: " + Project.GPA;
         Dynamic_Text ob2 = Project.getDynamic_Text();
-        ob2.writeScore(gpa,world1,2500,140,0);
+        
         GreenfootImage gi =  this.getImage();
-        gi.scale(1347, 537);
-        gi.setTransparency(160);
+        gi.scale(700, 500);
+        //gi.setTransparency();
         this.setImage(gi);
         world1.repaint();
-        world1.addObject(this,500,300);
+        world1.addObject(this,350,300);
+        ob2.writeScore(gpa,world1,500,250,-1);
+        Greenfoot.playSound("KBC_intro.mp3");
         }
         return -1;
     }

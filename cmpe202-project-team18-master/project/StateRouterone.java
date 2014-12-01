@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.*;
 
 /**
  * Write a description of class StateRouterone here.
@@ -95,5 +96,21 @@ public class StateRouterone extends Actor {
              currentState.onMousePress(mouseX, mouseY, caption, world);
     }
     
+    public void stateChange(World world){
+        Caption  msg= new Caption();
+        GreenfootImage gimg;
+        Font myFont;
+        gimg = new GreenfootImage(600,40);
+        gimg.setTransparency(255);
+        gimg.setColor(java.awt.Color.YELLOW);
+        myFont = new Font("SANS_SERIF", Font.BOLD, 30);
+        gimg.setFont(myFont);
+        gimg.drawString("Congratulations !! Level Completed ",50, 20);
+        msg.setImage(gimg);
+        world.addObject(msg,500,500);
+        Greenfoot.delay(750);
+        Timer.count = 10;
+        world.removeObject(msg);
+    }
        
 }

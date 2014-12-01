@@ -30,7 +30,7 @@ public class State1one extends Actor implements StateInterfaceone
      */
     public   State1one( StateRouterone sr){
         GreenfootImage img = getImage();
-        img.scale(150,100);
+        img.scale(150,70);
         setImage(img);
         this.sr = sr;
     }
@@ -76,18 +76,19 @@ public class State1one extends Actor implements StateInterfaceone
             option4 = formatedQuestion.get(4);
             answer = formatedQuestion.get(answerIndex);
             Dynamic_Text ob2 = Project.getDynamic_Text();
-            ob2.write_text(question,world,500,440,0);
-            ob2.write_text(option1,world,335,503,1);
-            ob2.write_text(option2,world,670,503,1);
-            ob2.write_text(option3,world,335,555,1);
-            ob2.write_text(option4,world,670,555,1);
+            ob2.write_text(question,world,520,490,0);
+            ob2.write_text(option1,world,355,533,1);
+            ob2.write_text(option2,world,680,533,1);
+            ob2.write_text(option3,world,355,578,1);
+            ob2.write_text(option4,world,680,578,1);
             questionCount++;
             return 0;
         }
         else{
             questionCount = 1;
+            sr.stateChange(world);
             world.removeObject((Actor)sr.getState1());
-            world.addObject((Actor)sr.getState2(),200,100);
+            world.addObject((Actor)sr.getState2(),900,150);
             sr.setState(sr.getState2());
             return -1;
         }
@@ -160,7 +161,7 @@ public class State1one extends Actor implements StateInterfaceone
               gc = Project.getGameController();
               scoreboard=gc.getScoreBoard();
               scoreboard.update();
-               if(Project.getLives() == 0){ 
+               if(Project.getLives() < 1){ 
                  sr.setState(sr.getState4());
                  sr.level4(getWorld());                
                 }
@@ -171,9 +172,9 @@ public class State1one extends Actor implements StateInterfaceone
             if(null != getWorld()){
                Project.setLives();
                 updateScoreboard();
-               if(Project.getLives() != 0)
+               if(Project.getLives() > 0)
                     throwQuestion(getWorld());
-            }
+                }
         }
 
 
