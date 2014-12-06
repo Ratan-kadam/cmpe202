@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/cmpe202/!svn/ver/53/source/questionset
+END
+EasySet.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/cmpe202/!svn/ver/53/source/questionset/EasySet.txt
+END
+DifficultSet.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/cmpe202/!svn/ver/53/source/questionset/DifficultSet.txt
+END
+MediumSet.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/cmpe202/!svn/ver/53/source/questionset/MediumSet.txt
+END

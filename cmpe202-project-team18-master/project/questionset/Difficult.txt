@@ -1,0 +1,4 @@
+The Core Principal of  Good Design involve?High Dependency/less Code/ High Cohesion/Too many Comments/2
+What is P in GRASP ?Possibility/Password/Principal/Paging/2
+This decide the first object to receive from UI ?Controller/Information Expert/Scrum Master/Developer/0
+The Pattern used to implement module for accessing confidential data ?Abstract factory/Strategy/Prototype/Singleton/3
