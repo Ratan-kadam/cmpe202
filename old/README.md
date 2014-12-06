@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 cmpe273-lab2
 ============
 
@@ -44,3 +45,10 @@ curl -i http://localhost:8000/ -X DELETE --cookie "session_id=xxxxxxxxxx"
 ```
 
 [Connect]:http://www.senchalabs.org/connect/
+=======
+hello-world
+===========
+
+first repository
+Hi this is first repository for CMPE 273.
+>>>>>>> hello-world/master
