@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=world
+comment0.target=int\ level1(greenfoot.World)
+comment1.params=world
+comment1.target=int\ level2(greenfoot.World)
+comment2.params=world
+comment2.target=int\ level3(greenfoot.World)
+comment3.params=world
+comment3.target=int\ level4(greenfoot.World)
+comment4.params=
+comment4.target=void\ update()
+comment5.params=world
+comment5.target=int\ throwQuestion(greenfoot.World)
+comment6.params=x\ y\ c\ world
+comment6.target=void\ onMousePress(int,\ int,\ Caption,\ greenfoot.World)
+numComments=7
