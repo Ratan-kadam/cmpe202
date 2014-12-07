@@ -1,5 +1,0 @@
-Use this pattern when implementation might change ?Observer/Strategy/Adapter/Composite/1
-Use this Pattern when interaction amongst the group of object can change?Mediator/Strategy/Adapter/Composite/0
-Grasp principal that assign the responsibility to class ?Observer/Strategy/Prototype/Information Expert/3
-What is R in the GRASP ?Render/Responsibility/Range/Rest/1
-Pattern used when Collection might change? Observer/iterator/Adapter/Composite/1

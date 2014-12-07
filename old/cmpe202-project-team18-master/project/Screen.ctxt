@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.params=
-comment0.target=Screen()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Screen\r\n
-comment1.params=
-comment1.target=void\ showScreen()
-comment2.params=
-comment2.target=greenfoot.GreenfootImage\ getScreen()
-numComments=3
